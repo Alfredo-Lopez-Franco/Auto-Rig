@@ -1,9 +1,11 @@
+#Hi! This is the first part of my AutoRig system, it works by now with the joints created and the duplicate for IK and FK system
+
 import maya.cmds as cmds
 
 #INTERFACE
 
-window_Name = "Freduart2_Rig"
-windowTittle = "Freduart2.0"
+window_Name = "AutoRig_AlfredoLopez"
+windowTittle = "AutorRig_AlfredoLopez"
 window_w = 200
 window_h = 200
 
@@ -110,18 +112,18 @@ def blendJoints (*args):
 
     ################################################ LEGS ####################################
 
-    cmds.createNode('blendColors', name = 'left_femur_blndColor')
+    cmds.createNode('blendColors', name = 'left_upperLeg_blndColor')
     cmds.createNode('blendColors', name = 'left_knee_blndColor')
     cmds.createNode('blendColors', name = 'left_ankle_blndColor')
     cmds.createNode('blendColors', name = 'left_tarsais_blndColor')
 
-    cmds.createNode('blendColors', name = 'right_femur_blndColor')
+    cmds.createNode('blendColors', name = 'right_upperLeg_blndColor')
     cmds.createNode('blendColors', name = 'right_knee_blndColor')
     cmds.createNode('blendColors', name = 'right_ankle_blndColor')
     cmds.createNode('blendColors', name = 'right_tarsais_blndColor')
 
-    cmds.connectAttr('left_femur_ikJnt.rotate','left_femur_blndColor.color1')
-    cmds.connectAttr('left_femur_fkJnt.rotate','left_femur_blndColor.color2')
+    cmds.connectAttr('left_femur_ikJnt.rotate','left_upperLeg_blndColor.color1')
+    cmds.connectAttr('left_femur_fkJnt.rotate','left_upperLeg_blndColor.color2')
 
     cmds.connectAttr('left_knee_ikJnt.rotate','left_knee_blndColor.color1')
     cmds.connectAttr('left_knee_fkJnt.rotate','left_knee_blndColor.color2')
@@ -132,13 +134,13 @@ def blendJoints (*args):
     cmds.connectAttr('left_tarsais_ikJnt.rotate','left_tarsais_blndColor.color1')
     cmds.connectAttr('left_tarsais_fkJnt.rotate','left_tarsais_blndColor.color2')
 
-    cmds.connectAttr('left_femur_blndColor.output', 'left_femur_jnt.rotate')
+    cmds.connectAttr('left_femur_blndColor.output', 'left_upperLeg_jnt.rotate')
     cmds.connectAttr('left_knee_blndColor.output', 'left_knee_jnt.rotate')
     cmds.connectAttr('left_ankle_blndColor.output', 'left_ankle_jnt.rotate')
     cmds.connectAttr('left_tarsais_blndColor.output', 'left_tarsais_jnt.rotate')
 
-    cmds.connectAttr('right_femur_ikJnt.rotate','right_femur_blndColor.color1')
-    cmds.connectAttr('right_femur_fkJnt.rotate','right_femur_blndColor.color2')
+    cmds.connectAttr('right_femur_ikJnt.rotate','right_upperLeg_blndColor.color1')
+    cmds.connectAttr('right_femur_fkJnt.rotate','right_upperLeg_blndColor.color2')
 
     cmds.connectAttr('right_knee_ikJnt.rotate','right_knee_blndColor.color1')
     cmds.connectAttr('right_knee_fkJnt.rotate','right_knee_blndColor.color2')
@@ -149,7 +151,7 @@ def blendJoints (*args):
     cmds.connectAttr('right_tarsais_ikJnt.rotate','right_tarsais_blndColor.color1')
     cmds.connectAttr('right_tarsais_fkJnt.rotate','right_tarsais_blndColor.color2')
 
-    cmds.connectAttr('right_femur_blndColor.output', 'right_femur_jnt.rotate')
+    cmds.connectAttr('right_femur_blndColor.output', 'right_upperLeg_jnt.rotate')
     cmds.connectAttr('right_knee_blndColor.output', 'right_knee_jnt.rotate')
     cmds.connectAttr('right_ankle_blndColor.output', 'right_ankle_jnt.rotate')
     cmds.connectAttr('right_tarsais_blndColor.output', 'right_tarsais_jnt.rotate')
