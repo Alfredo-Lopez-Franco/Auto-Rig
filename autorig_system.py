@@ -100,7 +100,7 @@ def custom_UI():
                 command=finger_system)
 
 #------------------------ Blend joints ------------------------#
-def blend_joints ():
+def blend_joints(self):
     """
     This function blend the IK joints and the FK joints to the Bind joints
     """
@@ -114,7 +114,7 @@ def blend_joints ():
     cmds.createNode('blendColors', name = 'right_elbow_blndColor')
     cmds.createNode('blendColors', name = 'right_wrist_blndColor')
 
-#This connects the rotate attributes of the arms to the blend colors
+#This connects the rotate attributeTypes of the arms to the blend colors
     cmds.connectAttr('left_shoulder_ikJnt.rotate','left_shoulder_blndColor.color1')
     cmds.connectAttr('left_shoulder_fkJnt.rotate','left_shoulder_blndColor.color2')
 
@@ -153,7 +153,7 @@ def blend_joints ():
     cmds.createNode('blendColors', name = 'right_ankle_blndColor')
     cmds.createNode('blendColors', name = 'right_tarsais_blndColor')
 
-#This connects the rotate attributes of the legs to the blend colors
+#This connects the rotate attributeTypes of the legs to the blend colors
     cmds.connectAttr('left_femur_ikJnt.rotate','left_femur_blndColor.color1')
     cmds.connectAttr('left_femur_fkJnt.rotate','left_femur_blndColor.color2')
 
@@ -371,15 +371,15 @@ def auto_fingers(fingerGroup, hand):
     so the fingers can open the hand, spread it and make a fist
     """
 
-#Creation of the attributes
+#Creation of the attributeTypes
     cmds.addAttr(
         hand,
         longName="Fist",
         niceName="Fist",
-        attribute="float",
+        attributeType="float",
         defaultValue=0,
-        minimum=0,
-        maximum=20,
+        minValue=0,
+        maxValue=20,
         hidden=False,
         keyable=True,
     )
@@ -387,10 +387,10 @@ def auto_fingers(fingerGroup, hand):
         hand,
         longName="UpFingers",
         niceName="UpFingers",
-        attribute="float",
+        attributeType="float",
         defaultValue=0,
-        minimum=0,
-        maximum=10,
+        minValue=0,
+        maxValue=10,
         hidden=False,
         keyable=True,
     )   
@@ -398,10 +398,10 @@ def auto_fingers(fingerGroup, hand):
         hand,
         longName="Spread",
         niceName="Spread",
-        attribute="float",
+        attributeType="float",
         defaultValue=0,
-        minimum=0,
-        maximum=10,
+        minValue=0,
+        maxValue=10,
         hidden=False,
         keyable=True,
     )
@@ -531,7 +531,7 @@ def auto_fingers(fingerGroup, hand):
                 )
     
 
-def finger_system():
+def finger_system(self):
     """
     This function takes the joints and add them to each finger position
     """
@@ -568,7 +568,7 @@ def finger_system():
     finger_side(fingerJoint)
 
 #------------------------ FK system ------------------------#
-def FK_system():
+def FK_system(self):
     """
     This function creates the FK system
     """
@@ -622,7 +622,7 @@ def FK_system():
     cmds.parent('right_shoulder_fkctrlGrp', 'right_clavicle_ctrl')
 
 # ------------------------ IK system ------------------------#
-def IK_system():
+def IK_system(self):
     """
     This function create the IK system of the rig
     """
@@ -656,7 +656,7 @@ def IK_system():
         name="left_leg_metaTarsais_SC_ikHandle",
         solver="ikSCsolver",
         startJoint="left_tarsais_ikJnt",
-        endEffectr="left_metaTarsais_endikJnt",
+        endEffector="left_metaTarsais_endikJnt",
     )
 
     cmds.group(name="left_leg_metaTarsais_SC_pivotGrp", empty=True)
@@ -702,15 +702,15 @@ def IK_system():
     cmds.parentConstraint("left_foot_ctrl", "left_footSystem_ctrlGrp")
     cmds.scaleConstraint("left_foot_ctrl", "left_footSystem_ctrlGrp")
 
-#Attribute to create the basic foot movement
+#attributeType to create the basic foot movement
     cmds.addAttr(
         "left_foot_ctrl",
         longName="HeelRoll",
         niceName="Heel Roll",
-        attribute="float",
+        attributeType="float",
         defaultValue=0,
-        minimum=0,
-        maximum=10,
+        minValue=0,
+        maxValue=10,
         hidden=False,
         keyable=True,
     )
@@ -718,10 +718,10 @@ def IK_system():
         "left_foot_ctrl",
         longName="ToeRoll",
         niceName="Toe Roll",
-        attribute="float",
+        attributeType="float",
         defaultValue=0,
-        minimum=0,
-        maximum=10,
+        minValue=0,
+        maxValue=10,
         hidden=False,
         keyable=True,
     )
@@ -729,7 +729,7 @@ def IK_system():
         "left_foot_ctrl",
         longName="SwivelToe",
         niceName="Swivel Toe",
-        attribute="float",
+        attributeType="float",
         defaultValue=0,
         hidden=False,
         keyable=True,
@@ -738,10 +738,10 @@ def IK_system():
         "left_foot_ctrl",
         longName="RaiseToe",
         niceName="Raise Toe",
-        attribute="float",
+        attributeType="float",
         defaultValue=0,
-        minimum=-10,
-        maximum=10,
+        minValue=-10,
+        maxValue=10,
         hidden=False,
         keyable=True,
     )
@@ -749,10 +749,10 @@ def IK_system():
         "left_foot_ctrl",
         longName="RaiseHeel",
         niceName="Raise Heel",
-        attribute="float",
+        attributeType="float",
         defaultValue=0,
-        minimum=0,
-        maximum=20,
+        minValue=0,
+        maxValue=20,
         hidden=False,
         keyable=True,
     )
@@ -760,7 +760,7 @@ def IK_system():
         "left_foot_ctrl",
         longName="SwivelHeel",
         niceName="Swivel Heel",
-        attribute="float",
+        attributeType="float",
         defaultValue=0,
         hidden=False,
         keyable=True,
@@ -911,10 +911,10 @@ def IK_system():
         "right_foot_ctrl",
         longName="HeelRoll",
         niceName="Heel Roll",
-        attribute="float",
+        attributeType="float",
         defaultValue=0,
-        minimum=0,
-        maximum=10,
+        minValue=0,
+        maxValue=10,
         hidden=False,
         keyable=True,
     )
@@ -922,10 +922,10 @@ def IK_system():
         "right_foot_ctrl",
         longName="ToeRoll",
         niceName="Toe Roll",
-        attribute="float",
+        attributeType="float",
         defaultValue=0,
-        minimum=0,
-        maximum=10,
+        minValue=0,
+        maxValue=10,
         hidden=False,
         keyable=True,
     )
@@ -933,7 +933,7 @@ def IK_system():
         "right_foot_ctrl",
         longName="SwivelToe",
         niceName="Swivel Toe",
-        attribute="float",
+        attributeType="float",
         defaultValue=0,
         hidden=False,
         keyable=True,
@@ -942,10 +942,10 @@ def IK_system():
         "right_foot_ctrl",
         longName="RaiseToe",
         niceName="Raise Toe",
-        attribute="float",
+        attributeType="float",
         defaultValue=0,
-        minimum=-10,
-        maximum=10,
+        minValue=-10,
+        maxValue=10,
         hidden=False,
         keyable=True,
     )
@@ -953,10 +953,10 @@ def IK_system():
         "right_foot_ctrl",
         longName="RaiseHeel",
         niceName="Raise Heel",
-        attribute="float",
+        attributeType="float",
         defaultValue=0,
-        minimum=0,
-        maximum=20,
+        minValue=0,
+        maxValue=20,
         hidden=False,
         keyable=True,
     )
@@ -964,7 +964,7 @@ def IK_system():
         "right_foot_ctrl",
         longName="SwivelHeel",
         niceName="Swivel Heel",
-        attribute="float",
+        attributeType="float",
         defaultValue=0,
         hidden=False,
         keyable=True,
@@ -1098,7 +1098,7 @@ def IK_system():
 
 
 # ------------------------ Switch method ------------------------#
-def switch():
+def switch(self):
     """
     This function creates the switch system and attatch it to the blend Node
     """
@@ -1118,10 +1118,10 @@ def switch():
         "right_arm_IKFKSwitch01_ctrl",
     ]
 
-#Create the controller and attributes of the switch
+#Create the controller and attributeTypes of the switch
     for i, orig in enumerate(joints):
         curve = cmds.curve(
-            name=object[i],
+            name=switch_controllers[i],
             degree=1,
             point=[
                 (1, 1, 1),
@@ -1144,18 +1144,18 @@ def switch():
             ],
             knot=[1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17],
         )
-        group = cmds.group(name=object[i] + "Grp")
+        group = cmds.group(name=switch_controllers[i] + "Grp")
         constraint = cmds.parentConstraint(joints[i], group)
         cmds.delete(constraint)
 
         cmds.addAttr(
-            object[i],
+            switch_controllers[i],
             longName="IK_FK_Switch",
             niceName="IK FK Switch",
-            attribute="short",
+            attributeType="short",
             defaultValue=0,
-            minimum=0,
-            maximum=1,
+            minValue=0,
+            maxValue=1,
             keyable=True,
         )
 
@@ -1233,7 +1233,7 @@ def switch():
     cmds.connectAttr("left_armReverse.outputX", "left_shoulder_fkctrlGrp.visibility")
     cmds.connectAttr("right_armReverse.outputX", "right_shoulder_fkctrlGrp.visibility")
 
-#This part connects the IK_FK_Switch attribute from the swith to the IK FK visibility control groups
+#This part connects the IK_FK_Switch attributeType from the swith to the IK FK visibility control groups
     cmds.connectAttr(
         "left_leg_IKFKSwitch01_ctrl.IK_FK_Switch", "left_leg_ikSystemGrp.visibility"
     )
